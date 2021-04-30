@@ -1,5 +1,5 @@
-import React, { memo } from "react";
 import { NextPage } from "next";
+import React, { memo } from "react";
 
 interface Props {}
 
