@@ -1,8 +1,8 @@
 const withImages = require("next-images");
 
 module.exports = withImages({
-  basePath: process.env.BASE_URL || "",
-  assetPrefix: process.env.BASE_URL || "",
+  basePath: "",
+  assetPrefix: "",
   exportPathMap: async function () {
     return {
       "/": { page: "/" },
