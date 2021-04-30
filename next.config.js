@@ -1,7 +1,7 @@
 const withImages = require("next-images");
 
 module.exports = withImages({
-  basePath: "",
+  basePath: "/TTT-Front",
   assetPrefix: "",
   exportPathMap: async function () {
     return {
