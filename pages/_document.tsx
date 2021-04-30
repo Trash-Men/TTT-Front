@@ -1,6 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
-const baseUrl = "https://leeseongjinca.github.io/next_sketchbook";
+const baseUrl = "https://trash-men.github.io/TTT-Front";
 
 class MyDocument extends Document {
   render() {
