@@ -73,7 +73,6 @@ export const RankWrap = styled.div`
     }
   }
   @media screen and (max-width: 840px) {
-    border: 1px solid blue;
     > .wrap {
       display: block;
       > aside {

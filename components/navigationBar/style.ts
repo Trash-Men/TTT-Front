@@ -8,16 +8,17 @@ export const NavigationBarWrap = styled.nav`
   align-items: center;
   width: 100%;
   min-width: 320px;
-  height: 40px;
+  height: 60px;
   background-color: var(--background-color);
+  z-index: 10;
   > a {
+    flex: 1 0 33%;
     display: flex;
     align-items: center;
     justify-content: center;
-    -moz-flex-direction: column;
     flex-direction: column;
     height: 100%;
-    flex: 1 0 33%;
+    border: 1px solid var(--border-color);
     text-align: center;
     font-size: 12px;
     &.current {

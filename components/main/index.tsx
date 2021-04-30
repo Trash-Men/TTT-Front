@@ -9,7 +9,7 @@ import { IMAGE_BASE_URL } from "@utils/api/client";
 
 const containerStyle = {
   width: "100%",
-  height: "calc(100vh - 40px)",
+  height: "100%",
 };
 
 interface Props {
