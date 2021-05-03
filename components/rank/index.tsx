@@ -12,6 +12,7 @@ import {
 } from "@utils/contextAPI/theme";
 import { DARK, LIGHT } from "@utils/constants/theme";
 import useDidMountEffect from "@utils/hook/useDidMountEffect";
+import useMainAreaState from "@utils/hook/useMainAreaState";
 
 interface Props {
   trashes: ResTrash[];
@@ -27,6 +28,7 @@ const Rank: NextPage<Props> = ({ trashes, trashCans }) => {
   const dispatch = useThemeDispatch();
   const [rankType, setRankType] = useState<RankTypes>(TRASH);
   const [toggle, setToggle] = useState<boolean>(false);
+  const [trashAreas, trashCanAreas] = useMainAreaState(trashes, trashCans);
 
   const onClickRank = useCallback((e: MouseEvent<HTMLButtonElement>) => {
     setRankType(e.currentTarget.dataset.type as RankTypes);
@@ -36,14 +38,16 @@ const Rank: NextPage<Props> = ({ trashes, trashCans }) => {
     setToggle(check);
   }, []);
 
-  const displayRank = useCallback((list: ResTrash[]) => {
-    return list.map(({ area }, i) => (
-      <li key={i}>
-        <span>{i + 1}</span>
-        <span>{area}</span>
-        <span>{1}</span>
-      </li>
-    ));
+  const displayRank = useCallback((list: [string, number][]) => {
+    return list
+      .sort((a, b) => (a[1] < b[1] ? 1 : -1))
+      .map(([area, count], i) => (
+        <li key={i}>
+          <span>{i + 1}</span>
+          <span>{area}</span>
+          <span>{count}</span>
+        </li>
+      ));
   }, []);
 
   useDidMountEffect(() => {
@@ -96,7 +100,9 @@ const Rank: NextPage<Props> = ({ trashes, trashCans }) => {
               <span>지역 이름</span>
               <span>쓰레기 갯수</span>
             </li>
-            {rankType === TRASH ? displayRank(trashes) : displayRank(trashCans)}
+            {rankType === TRASH
+              ? displayRank(trashAreas)
+              : displayRank(trashCanAreas)}
           </ul>
         </main>
       </div>
