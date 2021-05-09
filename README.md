@@ -1,5 +1,7 @@
 # Trash To TrashCan
 
+Front end repository for Trash To Trash can.
+
 ### Project Structure
 
 ```
