@@ -1,4 +1,4 @@
-export const BASE_URL = "http://13.125.206.131:5000";
+export const BASE_URL = "http://dsm-rank.site";
 export const IMAGE_BASE_URL =
   "https://ttt-image.s3.ap-northeast-2.amazonaws.com";
 
