@@ -62,12 +62,12 @@ export const MainProvider: React.FC<{}> = ({ children }) => {
 
 export function useMainState() {
   const state = useContext(TrashStateContext);
-  if (!state) throw new Error("Cannot find SampleProvider");
+  if (!state) throw new Error("Cannot find MainProvider");
   return state;
 }
 
 export function useMainDispatch() {
   const dispatch = useContext(TrashDispatchContext);
-  if (!dispatch) throw new Error("Cannot find SampleProvider");
+  if (!dispatch) throw new Error("Cannot find MainProvider");
   return dispatch;
 }

@@ -64,13 +64,13 @@ export const ThemeProvider: React.FC<{}> = ({ children }) => {
 
 export function useThemeState() {
   const state = useContext(ThemeStateContext);
-  if (!state) throw new Error("Cannot find SampleProvider");
+  if (!state) throw new Error("Cannot find ThemeProvider");
   return state;
 }
 
 export function useThemeDispatch() {
   const dispatch = useContext(ThemeDispatchContext);
-  if (!dispatch) throw new Error("Cannot find SampleProvider");
+  if (!dispatch) throw new Error("Cannot find ThemeProvider");
   return dispatch;
 }
 
