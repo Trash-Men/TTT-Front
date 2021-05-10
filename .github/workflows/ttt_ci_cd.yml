@@ -2,7 +2,7 @@ name: TTT Build & Deploy to S3
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
