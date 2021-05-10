@@ -32,6 +32,7 @@ jobs:
           PASSWORD: ${{ secrets.PASSWORD }}
 
       - name: Make Static Site Generator (SSG)
+        run: npm run export
 
       - name: Deploy to S3
         env:
