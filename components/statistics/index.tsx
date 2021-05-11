@@ -1,15 +1,38 @@
+import { ResTrash } from "@utils/payloads/response";
 import { NextPage } from "next";
 import React, { memo } from "react";
 
-interface Props {}
+import * as S from "./style";
 
-const Statistics: NextPage<Props> = ({}) => {
+interface Props {
+  trashes: ResTrash[];
+  trashCans: ResTrash[];
+}
+
+const Statistics: NextPage<Props> = ({ trashes, trashCans }) => {
   return (
-    <div>
-      <h1>Statistics</h1>
-      <div id="chartTrash" />
-      <div id="chartTrashCan" />
-    </div>
+    <S.StatisticsWrap>
+      <div>
+        <div className="chart-wraps">
+          <p>전체 쓰레기 갯수</p>
+          <h1>{trashes.length}개</h1>
+        </div>
+        <div className="chart-wraps">
+          <div id="bar-trash" />
+          <div id="line-trash" />
+        </div>
+      </div>
+      <div>
+        <div className="chart-wraps">
+          <p>전체 쓰레기통 갯수</p>
+          <h1>{trashCans.length}개</h1>
+        </div>
+        <div className="chart-wraps">
+          <div id="bar-trashCan" />
+          <div id="line-trashCan" />
+        </div>
+      </div>
+    </S.StatisticsWrap>
   );
 };
 
