@@ -14,8 +14,6 @@ interface Props {
   password: string;
 }
 
-const a = bb.defaults({});
-
 const StatisticsPage: NextPage<Props> = ({ id, password }) => {
   const [trashes, trashCans] = useMain({ id, password });
   const [trashArea, trashCanArea] = useMainAreaState(trashes, trashCans);
@@ -59,15 +57,11 @@ const StatisticsPage: NextPage<Props> = ({ id, password }) => {
         ],
         type: line(),
       },
-      line: {
-        classes: ["test"],
-      },
       axis: {
         x: {
           type: "timeseries",
           tick: {
             format: "%m-%d",
-            multiline: true,
           },
         },
       },
