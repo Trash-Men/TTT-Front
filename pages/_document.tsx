@@ -1,6 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
-const baseUrl = "https://trash-men.github.io/TTT-Front";
+const baseUrl = "http://ttt-front.com.s3-website.ap-northeast-2.amazonaws.com";
 
 class MyDocument extends Document {
   render() {
