@@ -1,29 +1,37 @@
 import { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import { useEffect } from "react";
-import bb, { bar } from "billboard.js";
+import bb, { bar, line, PrimitiveArray } from "billboard.js";
 import "billboard.js/dist/theme/insight.css";
 
 import Statistics from "@components/statistics";
 import useMainAreaState from "@utils/hook/useMainAreaState";
 import useMain from "@utils/hook/useMain";
+import useMainTimeState from "@utils/hook/useMainTimeState";
 
 interface Props {
   id: string;
   password: string;
 }
 
+const a = bb.defaults({});
+
 const StatisticsPage: NextPage<Props> = ({ id, password }) => {
   const [trashes, trashCans] = useMain({ id, password });
   const [trashArea, trashCanArea] = useMainAreaState(trashes, trashCans);
+  const [trashTime, trashCanTime] = useMainTimeState(trashes, trashCans);
 
-  const setTrashStatistics = () => {
+  const bbBarGenerator = (
+    text: string,
+    columns: PrimitiveArray[],
+    bindto: string
+  ) => {
     bb.generate({
       title: {
-        text: "지역별 쓰레기 통계",
+        text,
       },
       data: {
-        columns: trashArea,
+        columns,
         type: bar(),
       },
       bar: {
@@ -32,42 +40,80 @@ const StatisticsPage: NextPage<Props> = ({ id, password }) => {
         },
         padding: 20,
       },
-      bindto: "#chartTrash",
+      bindto,
     });
   };
 
-  const setTrashCanStatistics = () => {
+  const bbLineGenerator = (
+    text: string,
+    x: string[],
+    data: number[],
+    bindto: string
+  ) => {
     bb.generate({
-      title: {
-        text: "지역별 쓰레기통 통계",
-      },
       data: {
-        columns: trashCanArea,
-        type: bar(),
+        x: "x",
+        columns: [
+          ["x", ...x],
+          [text, ...data],
+        ],
+        type: line(),
       },
-      bar: {
-        width: {
-          ratio: 0.2,
+      line: {
+        classes: ["test"],
+      },
+      axis: {
+        x: {
+          type: "timeseries",
+          tick: {
+            format: "%m-%d",
+            multiline: true,
+          },
         },
-        padding: 20,
       },
-      bindto: "#chartTrashCan",
+      bindto: bindto,
     });
+  };
+
+  const generateTrashArea = () => {
+    bbBarGenerator("지역별 쓰레기 통계", trashArea, "#bar-trash");
+  };
+
+  const generateTrashCanArea = () => {
+    bbBarGenerator("지역별 쓰레기통 통계", trashCanArea, "#bar-trashCan");
+  };
+
+  const generateTrashTime = () => {
+    const [month, amount] = trashTime;
+
+    bbLineGenerator("시간별 쓰레기 통계", month, amount, "#line-trash");
+  };
+
+  const generateTrashCanTime = () => {
+    const [month, amount] = trashCanTime;
+
+    bbLineGenerator("시간별 쓰레기통 통계", month, amount, "#line-trashCan");
   };
 
   useEffect(() => {
-    setTrashStatistics();
+    generateTrashArea();
   }, [trashArea]);
   useEffect(() => {
-    setTrashCanStatistics();
+    generateTrashCanArea();
   }, [trashCanArea]);
+  useEffect(() => {
+    generateTrashTime();
+  }, [trashTime]);
+  useEffect(() => {
+    generateTrashCanTime();
+  }, [trashCanTime]);
 
   return (
     <>
       <Head>
         <title>TTT | Statistics</title>
       </Head>
-      <Statistics />
+      <Statistics trashes={trashes} trashCans={trashCans} />
     </>
   );
 };
