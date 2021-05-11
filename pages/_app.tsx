@@ -5,11 +5,11 @@ import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 
 import MobileLayout from "layouts/MobileLayout";
+import ThemeLayout from "layouts/ThemeLayout";
 
 import { css, Global } from "@emotion/react";
 import { MainProvider } from "@utils/contextAPI/main";
 import { ThemeProvider } from "@utils/contextAPI/theme";
-import ThemeLayout from "layouts/ThemeLayout";
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
@@ -41,15 +41,14 @@ const App = ({ Component, pageProps }: AppProps) => {
 
 const globalStyle = css`
   * {
-    font-size: 16px;
     box-sizing: border-box;
     color: var(--color);
+    transition: background 0.3s, color 0.3s;
   }
   html {
     cursor: default;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    font-size: 16px;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
   }
@@ -67,6 +66,7 @@ const globalStyle = css`
     margin: 0;
     padding: 0;
     border: 0;
+    font-size: inherit;
   }
   article,
   aside,
@@ -111,6 +111,92 @@ const globalStyle = css`
   }
   a:hover {
     text-decoration: underline;
+  }
+  ml,
+  body,
+  div,
+  span,
+  applet,
+  object,
+  iframe,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  blockquote,
+  pre,
+  a,
+  abbr,
+  acronym,
+  address,
+  big,
+  cite,
+  code,
+  del,
+  dfn,
+  em,
+  img,
+  ins,
+  kbd,
+  q,
+  s,
+  samp,
+  small,
+  strike,
+  strong,
+  sub,
+  sup,
+  tt,
+  var,
+  b,
+  u,
+  i,
+  center,
+  dl,
+  dt,
+  dd,
+  ol,
+  ul,
+  li,
+  fieldset,
+  form,
+  label,
+  legend,
+  table,
+  caption,
+  tbody,
+  tfoot,
+  thead,
+  tr,
+  th,
+  td,
+  article,
+  aside,
+  canvas,
+  details,
+  embed,
+  figure,
+  figcaption,
+  footer,
+  header,
+  hgroup,
+  menu,
+  nav,
+  output,
+  ruby,
+  section,
+  summary,
+  time,
+  mark,
+  audio,
+  video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
   }
 `;
 
