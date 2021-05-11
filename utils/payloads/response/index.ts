@@ -7,7 +7,6 @@ export type ResTrash = {
   latitude: number;
   longitude: number;
   area: string;
-  address: string;
   created_at: string;
 };
 
